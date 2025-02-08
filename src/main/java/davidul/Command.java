@@ -47,16 +47,15 @@ public class Command implements Runnable {
         if(parseResult.hasMatchedOption("-c")){
             fileProcessor.countBytes();
         }
+
         if(parseResult.hasMatchedOption("-l")){
             System.out.println("Lines");
             fileProcessor.countLines();
         }
+
         if(parseResult.hasMatchedOption("-w")){
             System.out.println("Words");
             fileProcessor.countWords();
         }
-
-        spec.commandLine().usage(System.out);
-        System.out.println("Hello World");
     }
 }

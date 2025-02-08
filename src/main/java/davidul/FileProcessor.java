@@ -17,8 +17,7 @@ public class FileProcessor {
     }
 
     public int countWords(){
-        int count = 0;
-        count = new String(byteBuffer.array()).split("\\W+").length;
+        int count = new String(byteBuffer.array()).split("\\W+").length;
         System.out.println("Words " + count);
         return count;
     }
