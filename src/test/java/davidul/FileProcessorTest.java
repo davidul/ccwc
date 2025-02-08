@@ -42,11 +42,11 @@ class FileProcessorTest {
         }
     }
 
-//    @AfterAll
-//    static void after() {
-//        File file = new File("src/test/resources/very_large.txt");
-//        file.delete();
-//    }
+    @AfterAll
+    static void after() {
+        File file = new File("src/test/resources/very_large.txt");
+        file.delete();
+    }
 
     @Test
     void countBytes() {
