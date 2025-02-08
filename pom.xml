@@ -8,6 +8,25 @@
     <artifactId>ccwc</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <developers>
+        <developer>
+            <id>davidul</id>
+            <name>David Ulicny</name>
+            <email>ulicny.david@gmail.com</email>
+        </developer>
+    </developers>
+
+    <inceptionYear>
+        2025
+    </inceptionYear>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
     <properties>
         <maven.compiler.source>23</maven.compiler.source>
         <maven.compiler.target>23</maven.compiler.target>
