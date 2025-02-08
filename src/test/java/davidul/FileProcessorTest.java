@@ -52,62 +52,62 @@ class FileProcessorTest {
     void countBytes() {
         FileProcessor fileProcessor = new FileProcessor();
 
-        fileProcessor.readFile(new File("src/test/resources/empty.txt"));
-        assertEquals(0, fileProcessor.countBytes());
+        Counter counter = fileProcessor.readFile(new File("src/test/resources/empty.txt"));
+        assertEquals(0, counter.countBytes());
 
-        fileProcessor.readFile(new File("src/test/resources/empty_new_lines.txt"));
-        assertEquals(4, fileProcessor.countBytes());
+        Counter counter1 = fileProcessor.readFile(new File("src/test/resources/empty_new_lines.txt"));
+        assertEquals(4, counter1.countBytes());
 
-        fileProcessor.readFile(new File("src/test/resources/no_new_line_at_end.txt"));
-        assertEquals(9, fileProcessor.countBytes());
+        Counter counter2 = fileProcessor.readFile(new File("src/test/resources/no_new_line_at_end.txt"));
+        assertEquals(9, counter2.countBytes());
 
-        fileProcessor.readFile(new File("src/test/resources/new_line_at_end.txt"));
-        assertEquals(18, fileProcessor.countBytes());
+        Counter counter3 = fileProcessor.readFile(new File("src/test/resources/new_line_at_end.txt"));
+        assertEquals(18, counter3.countBytes());
 
-        fileProcessor.readFile(new File("src/test/resources/very_large.txt"));
-        assertEquals(1073741824, fileProcessor.countBytes());
+        Counter counter4 = fileProcessor.readFile(new File("src/test/resources/very_large.txt"));
+        assertEquals(1073741824, counter4.countBytes());
     }
 
     @Test
     void countWords() {
         FileProcessor fileProcessor = new FileProcessor();
 
-        fileProcessor.readFile(new File("src/test/resources/empty.txt"));
-        assertEquals(0, fileProcessor.countWords());
+        Counter counter = fileProcessor.readFile(new File("src/test/resources/empty.txt"));
+        assertEquals(0, counter.countWords());
 
-        fileProcessor.readFile(new File("src/test/resources/empty_new_lines.txt"));
-        assertEquals(0, fileProcessor.countWords());
+        Counter counter1 = fileProcessor.readFile(new File("src/test/resources/empty_new_lines.txt"));
+        assertEquals(0, counter1.countWords());
 
-        fileProcessor.readFile(new File("src/test/resources/no_new_line_at_end.txt"));
-        assertEquals(2, fileProcessor.countWords());
+        Counter counter2 = fileProcessor.readFile(new File("src/test/resources/no_new_line_at_end.txt"));
+        assertEquals(2, counter2.countWords());
 
-        fileProcessor.readFile(new File("src/test/resources/new_line_at_end.txt"));
-        assertEquals(3, fileProcessor.countWords());
+        Counter counter3 = fileProcessor.readFile(new File("src/test/resources/new_line_at_end.txt"));
+        assertEquals(3, counter3.countWords());
 
         //357564417
-        fileProcessor.readFile(new File("src/test/resources/very_large.txt"));
-        assertEquals(357564416, fileProcessor.countWords());
+        Counter counter4 = fileProcessor.readFile(new File("src/test/resources/very_large.txt"));
+        assertEquals(357564416, counter4.countWords());
     }
 
     @Test
     void countLines() {
         FileProcessor fileProcessor = new FileProcessor();
 
-        fileProcessor.readFile(new File("src/test/resources/empty.txt"));
-        assertEquals(0, fileProcessor.countLines());
+        Counter counter = fileProcessor.readFile(new File("src/test/resources/empty.txt"));
+        assertEquals(0, counter.countLines());
 
-        fileProcessor.readFile(new File("src/test/resources/empty_new_lines.txt"));
-        assertEquals(4, fileProcessor.countLines());
+        Counter counter1 = fileProcessor.readFile(new File("src/test/resources/empty_new_lines.txt"));
+        assertEquals(4, counter1.countLines());
 
 
-        fileProcessor.readFile(new File("src/test/resources/no_new_line_at_end.txt"));
-        assertEquals(1, fileProcessor.countLines());
+        Counter counter2 = fileProcessor.readFile(new File("src/test/resources/no_new_line_at_end.txt"));
+        assertEquals(1, counter2.countLines());
 
-        fileProcessor.readFile(new File("src/test/resources/new_line_at_end.txt"));
-        assertEquals(2, fileProcessor.countLines());
+        Counter counter3 = fileProcessor.readFile(new File("src/test/resources/new_line_at_end.txt"));
+        assertEquals(2, counter3.countLines());
 
-        fileProcessor.readFile(new File("src/test/resources/very_large.txt"));
-        assertEquals(357564416, fileProcessor.countLines());
+        Counter counter4 = fileProcessor.readFile(new File("src/test/resources/very_large.txt"));
+        assertEquals(357564416, counter4.countLines());
     }
 
     @Test
@@ -117,7 +117,7 @@ class FileProcessorTest {
     @Test
     void readFile() {
         FileProcessor fileProcessor = new FileProcessor();
-        fileProcessor.readFile(new File("src/test/resources/no_new_line_at_end.txt"));
-        assertNotNull(fileProcessor.byteBuffer);
+        Counter counter = fileProcessor.readFile(new File("src/test/resources/no_new_line_at_end.txt"));
+        assertNotNull(counter);
     }
 }

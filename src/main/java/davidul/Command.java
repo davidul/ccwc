@@ -44,39 +44,42 @@ public class Command implements Runnable {
         List<PositionalParamSpec> positionalParamSpecs = parseResult.matchedPositionals();
         File[] files = positionalParamSpecs.getFirst().getValue();
         StringBuffer output = new StringBuffer();
-        fileProcessor.readFile(files[0]);
-        output.append("File: ")
-                .append(files[0].getAbsolutePath())
-                .append("\n");
+        List<Counter> counters = fileProcessor.readFiles(files);
+        for (Counter counter : counters) {
 
-
-        if(!bytes && !lines && !words ){
-            bytes = true;
-            lines = true;
-            words = true;
-        }
-
-        if (bytes) {
-            int countBytes = fileProcessor.countBytes();
-            output.append("Bytes: ")
-                    .append(countBytes)
+            output.append("File: ")
+                    .append(files[0].getAbsolutePath())
                     .append("\n");
-        }
 
-        if (lines) {
-            int countLines = fileProcessor.countLines();
-            output.append("Lines: ")
-                    .append(countLines)
-                    .append("\n");
-        }
 
-        if (words) {
-            int countWords = fileProcessor.countWords();
-            output.append("Words: ")
-                    .append(countWords)
-                    .append("\n");
-        }
+            if (!bytes && !lines && !words) {
+                bytes = true;
+                lines = true;
+                words = true;
+            }
 
-        System.out.println(output);
+            if (bytes) {
+                int countBytes = counter.countBytes();
+                output.append("Bytes: ")
+                        .append(countBytes)
+                        .append("\n");
+            }
+
+            if (lines) {
+                int countLines = counter.countLines();
+                output.append("Lines: ")
+                        .append(countLines)
+                        .append("\n");
+            }
+
+            if (words) {
+                int countWords = counter.countWords();
+                output.append("Words: ")
+                        .append(countWords)
+                        .append("\n");
+            }
+
+            System.out.println(output);
+        }
     }
 }
