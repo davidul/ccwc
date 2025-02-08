@@ -19,7 +19,8 @@ public class Command implements Runnable {
     private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(Command.class);
     FileProcessor fileProcessor = new FileProcessor();
 
-    @Spec CommandSpec spec;
+    @Spec
+    CommandSpec spec;
 
     @Parameters(arity = "1..*", paramLabel = "FILE", description = "File to process.")
     File[] files;
@@ -42,20 +43,40 @@ public class Command implements Runnable {
         ParseResult parseResult = spec.commandLine().getParseResult();
         List<PositionalParamSpec> positionalParamSpecs = parseResult.matchedPositionals();
         File[] files = positionalParamSpecs.getFirst().getValue();
-       fileProcessor.readFile(files[0]);
+        StringBuffer output = new StringBuffer();
+        fileProcessor.readFile(files[0]);
+        output.append("File: ")
+                .append(files[0].getAbsolutePath())
+                .append("\n");
 
-        if(parseResult.hasMatchedOption("-c")){
-            fileProcessor.countBytes();
+
+        if(!bytes && !lines && !words ){
+            bytes = true;
+            lines = true;
+            words = true;
         }
 
-        if(parseResult.hasMatchedOption("-l")){
-            System.out.println("Lines");
-            fileProcessor.countLines();
+        if (bytes) {
+            int countBytes = fileProcessor.countBytes();
+            output.append("Bytes: ")
+                    .append(countBytes)
+                    .append("\n");
         }
 
-        if(parseResult.hasMatchedOption("-w")){
-            System.out.println("Words");
-            fileProcessor.countWords();
+        if (lines) {
+            int countLines = fileProcessor.countLines();
+            output.append("Lines: ")
+                    .append(countLines)
+                    .append("\n");
         }
+
+        if (words) {
+            int countWords = fileProcessor.countWords();
+            output.append("Words: ")
+                    .append(countWords)
+                    .append("\n");
+        }
+
+        System.out.println(output);
     }
 }

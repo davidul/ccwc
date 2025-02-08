@@ -12,7 +12,6 @@ public class FileProcessor {
     ByteBuffer byteBuffer;
 
     public int countBytes() {
-        System.out.println("Bytes " + byteBuffer.capacity());
         return byteBuffer.capacity();
     }
 
@@ -44,7 +43,6 @@ public class FileProcessor {
                 count++;
             }
         }
-        System.out.println("Lines " + count);
         return count;
     }
 
