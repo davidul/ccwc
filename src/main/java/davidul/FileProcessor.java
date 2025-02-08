@@ -7,9 +7,28 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FileProcessor {
+
+    private Map<File, Counter> counters = new HashMap<>();
+    public static FileProcessor INSTANCE;
+
+    public static FileProcessor getInstance() {
+        if(INSTANCE == null) {
+            synchronized (FileProcessor.class) {
+                if(INSTANCE == null) {
+                    INSTANCE = new FileProcessor();
+                }
+            }
+        }
+        return INSTANCE;
+    }
+
+    private FileProcessor() {
+    }
 
     public List<Counter> readFiles(File[] files) {
         List<Counter> counters = new ArrayList<>();
@@ -23,6 +42,10 @@ public class FileProcessor {
     }
 
     public Counter readFile(File file) {
+        if(counters.containsKey(file)) {
+            return counters.get(file);
+        }
+
         Path path = Paths.get(file.getAbsolutePath());
         try {
             byte[] fileBytes = Files.readAllBytes(path);

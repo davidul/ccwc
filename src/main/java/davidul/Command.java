@@ -17,7 +17,6 @@ import static picocli.CommandLine.Model.*;
 public class Command implements Runnable {
 
     private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(Command.class);
-    FileProcessor fileProcessor = new FileProcessor();
 
     @Spec
     CommandSpec spec;
@@ -44,7 +43,7 @@ public class Command implements Runnable {
         List<PositionalParamSpec> positionalParamSpecs = parseResult.matchedPositionals();
         File[] files = positionalParamSpecs.getFirst().getValue();
         StringBuffer output = new StringBuffer();
-        List<Counter> counters = fileProcessor.readFiles(files);
+        List<Counter> counters = FileProcessor.getInstance().readFiles(files);
         for (Counter counter : counters) {
 
             output.append("File: ")

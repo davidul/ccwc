@@ -102,4 +102,10 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>large-file</id>
+        </profile>
+    </profiles>
+
 </project>
