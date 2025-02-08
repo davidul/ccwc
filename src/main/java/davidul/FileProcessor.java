@@ -11,21 +11,19 @@ public class FileProcessor {
 
     ByteBuffer byteBuffer;
 
-    public void countBytes(){
+    public int countBytes(){
         System.out.println("Bytes " + byteBuffer.capacity());
+        return byteBuffer.capacity();
     }
 
-    public void countWords(){
+    public int countWords(){
         int count = 0;
-        for(int i = 0; i < byteBuffer.capacity(); i++){
-            if(byteBuffer.get(i) == 32){
-                count++;
-            }
-        }
+        count = new String(byteBuffer.array()).split("\\W+").length;
         System.out.println("Words " + count);
+        return count;
     }
 
-    public void countLines(){
+    public int countLines(){
         int count = 0;
         for(int i = 0; i < byteBuffer.capacity(); i++){
             if(byteBuffer.get(i) == 10){
@@ -33,6 +31,7 @@ public class FileProcessor {
             }
         }
         System.out.println("Lines " + count);
+        return count;
     }
 
     public void readFiles(){
