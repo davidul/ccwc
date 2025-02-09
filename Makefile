@@ -1,7 +1,7 @@
 include .env
 
 build:
-	mvn clean compile package
+	mvn clean package
 
 build-docker:
 	docker build -t $(DOCKER_IMAGE) .
